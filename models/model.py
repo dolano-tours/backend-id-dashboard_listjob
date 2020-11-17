@@ -2,12 +2,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, MetaData, String, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql.enumerated import ENUM
-from sqlalchemy.ext.declarative import declarative_base
-
-
-Base = declarative_base()
-metadata = Base.metadata
-
+from ..config.database import Base
 
 
 class Document(Base):
