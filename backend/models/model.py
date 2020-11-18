@@ -9,9 +9,9 @@ class Document(Base):
     __tablename__ = 'document'
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
-    path_file = Column(Text, nullable=False)
     pekerjaan_id = Column(ForeignKey('pekerjaan.id'), primary_key=True, nullable=False, index=True)
     pekerja_id = Column(ForeignKey('pekerja.id'), primary_key=True, nullable=False, index=True)
+    path_file = Column(Text, nullable=False)
 
     pekerja = relationship('Pekerja', primaryjoin='Document.pekerja_id == Pekerja.id', backref='documents')
     pekerjaan = relationship('Pekerjaan', primaryjoin='Document.pekerjaan_id == Pekerjaan.id', backref='documents')
@@ -23,8 +23,8 @@ class Hasil(Base):
 
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     pekerjaan_id = Column(ForeignKey('pekerjaan.id'), primary_key=True, nullable=False, index=True)
-    path_file = Column(Text, nullable=False)
     pekerja_id = Column(ForeignKey('pekerja.id'), primary_key=True, nullable=False, index=True)
+    path_file = Column(Text, nullable=False)
 
     pekerja = relationship('Pekerja', primaryjoin='Hasil.pekerja_id == Pekerja.id', backref='hasils')
     pekerjaan = relationship('Pekerjaan', primaryjoin='Hasil.pekerjaan_id == Pekerjaan.id', backref='hasils')
