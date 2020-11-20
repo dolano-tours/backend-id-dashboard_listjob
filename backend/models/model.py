@@ -15,7 +15,13 @@ class Document(Base):
 
     pekerja = relationship('Pekerja', primaryjoin='Document.pekerja_id == Pekerja.id', backref='documents')
     pekerjaan = relationship('Pekerjaan', primaryjoin='Document.pekerjaan_id == Pekerjaan.id', backref='documents')
-
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "Pekerjaan id":self.pekerjaan_id,
+            "pekerja id":self.pekerja_id,
+            
+            }
 
 
 class Hasil(Base):
@@ -28,8 +34,13 @@ class Hasil(Base):
 
     pekerja = relationship('Pekerja', primaryjoin='Hasil.pekerja_id == Pekerja.id', backref='hasils')
     pekerjaan = relationship('Pekerjaan', primaryjoin='Hasil.pekerjaan_id == Pekerjaan.id', backref='hasils')
-
-
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "Pekerjaan id":self.pekerjaan_id,
+            "pekerja id":self.pekerja_id,
+            
+            }
 
 class Pekerja(Base):
     __tablename__ = 'pekerja'
@@ -39,7 +50,12 @@ class Pekerja(Base):
     tipe_pekerja_id = Column(ForeignKey('tipe_pekerja.id'), primary_key=True, nullable=False, index=True)
 
     tipe_pekerja = relationship('TipePekerja', primaryjoin='Pekerja.tipe_pekerja_id == TipePekerja.id', backref='pekerjas')
-
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "id employee":self.id_employee,
+            "tipe pekerja id":self.tipe_pekerja_id
+            }
 
 
 class Pekerjaan(Base):
@@ -54,6 +70,16 @@ class Pekerjaan(Base):
     pekerja = relationship('Pekerja', primaryjoin='Pekerjaan.pekerja_id == Pekerja.id', backref='pekerja_pekerjaans')
     pemberi_tugas = relationship('Pekerja', primaryjoin='Pekerjaan.pemberi_tugas_id == Pekerja.id', backref='pekerja_pekerjaans_0')
 
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "pemberi tugas id":self.pemberi_tugas_id,
+            "pekerja id":self.pekerja_id,
+            "nama":self.nama,
+            "status":self.status
+          
+        }
+
 
 
 class TipePekerja(Base):
@@ -61,3 +87,9 @@ class TipePekerja(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     nama = Column(String(15), nullable=False)
+    
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "nama":self.nama
+        }
