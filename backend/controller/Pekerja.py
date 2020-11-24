@@ -19,13 +19,6 @@ def add(id_employee:int, tipe_pekerja_id:int):
     db_session.refresh(pekerja)
     return {"content": pekerja.to_dict()}
 
-def delete_by_id(target_id):
-    pekerja = db_session.query(Pekerja).filter_by(id=target_id)
-    data=pekerja.first()
-    pekerja.delete()
-    db_session.commit()
-    db_session.flush()
-    return {"content": data.to_dict()}
 
 
 

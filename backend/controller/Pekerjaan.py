@@ -23,12 +23,16 @@ def add(nama:str,pekerja_id:int,pemberi_tugas_id:int):
     db_session.refresh(pekerjaan)
     return {"content": pekerjaan.to_dict()}
 
-def delete_by_id(target_id):
+def update_by_id(target_id,deskripsi_pekerjaan,status="revisi"):
     pekerjaan = db_session.query(Pekerjaan).filter_by(id=target_id)
-    data=pekerjaan.first()
-    pekerjaan.delete()
+    pekerjaan.update(
+         {Pekerjaan.nama:deskripsi_pekerjaan}
+         
+    )    
     db_session.commit()
     db_session.flush()
+    data = db_session.query(Pekerjaan).filter_by(id=target_id).first()
     return {"content": data.to_dict()}
+
 
 

@@ -41,7 +41,6 @@ def update_by_nama():
     return jsonify(tipe_pekerja)
 
 
-
 @tipe_pekerja_routes.route("/delete", methods=['DELETE'])
 def delete_by_id():
     id = request.json.get('id')

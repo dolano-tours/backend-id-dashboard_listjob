@@ -27,10 +27,17 @@ def add():
     pekerjaan = Pekerjaan.add(nama,pekerja_id,pemberi_tugas_id)
     return jsonify(pekerjaan)
 
-@pekerjaan_routes.route("/delete", methods=['POST'])
-def delete_by_id():
-    id = request.json.get('id')
-    pekerjaan = Pekerjaan.delete_by_id(id)
+
+@pekerjaan_routes.route("/update/id", methods=['POST'])
+def update_by_id():
+    target_id = request.json.get('get_id')
+    deskripsi_pekerjaan = request.json.get('get_nama')
+
+    pekerjaan = Pekerjaan.update_by_id(target_id, deskripsi_pekerjaan)
     return jsonify(pekerjaan)
+    
 
 
+
+
+    

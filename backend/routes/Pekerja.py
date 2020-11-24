@@ -26,8 +26,4 @@ def add():
     pekerja = Pekerja.add(id_employee,tipe_pekerja_id)
     return jsonify(pekerja)
 
-@pekerja_routes.route("/delete", methods=['POST'])
-def delete_by_id():
-    id = request.json.get('id')
-    pekerja = Pekerja.delete_by_id(id)
-    return jsonify(pekerja)
+
