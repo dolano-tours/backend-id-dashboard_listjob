@@ -31,8 +31,8 @@ def add(nama:str,pekerja_id:int,pemberi_tugas_id:int):
 def update_by_id(target_id,deskripsi_pekerjaan,status="revisi"):
     pekerjaan = db_session.query(Pekerjaan).filter_by(id=target_id)
     pekerjaan.update(
-         {Pekerjaan.nama:deskripsi_pekerjaan}
-         
+        {Pekerjaan.nama:deskripsi_pekerjaan}
+        
     )    
     db_session.commit()
     db_session.flush()
