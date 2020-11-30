@@ -1,18 +1,14 @@
 from ..config.database import db_session
 from ..models.model import Pekerjaan
 from ..models.model import Pekerja
-from sqlalchemy.orm import joinedload
+from ..controller.TipePekerja import TipePekerja
 
 
 def get_all():
-    pekerjaan = db_session.query(Pekerjaan).options(
-        joinedload(Pekerjaan.pekerja).options(joinedload(Pekerja.tipe_pekerja)),
-        joinedload(Pekerjaan.pemberi_tugas).options(joinedload(Pekerja.tipe_pekerja))
-    ).all()
+    pekerjaan = db_session.query(Pekerjaan).all()
     return {"content": [i.to_dict() for i in pekerjaan]}
 
 def get_by_id(id:int):
-    
     pekerjaan = db_session.query(Pekerjaan).filter_by(id=id).first()
     return {"content": pekerjaan.to_dict() }
 

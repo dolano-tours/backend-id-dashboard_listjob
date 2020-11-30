@@ -18,8 +18,8 @@ class Document(Base):
     def to_dict(self):
         return{
             "id":self.id,
-            "Pekerjaan id":self.pekerjaan_id,
-            "pekerja id":self.pekerja_id,
+            "Pekerjaan_id":self.pekerjaan_id,
+            "pekerja_id":self.pekerja_id,
             
             }
 
@@ -37,8 +37,8 @@ class Hasil(Base):
     def to_dict(self):
         return{
             "id":self.id,
-            "Pekerjaan id":self.pekerjaan_id,
-            "pekerja id":self.pekerja_id,
+            "Pekerjaan_id":self.pekerjaan_id,
+            "pekerja_id":self.pekerja_id,
             
             }
 
@@ -53,8 +53,9 @@ class Pekerja(Base):
     def to_dict(self):
         return{
             "id":self.id,
-            "id employee":self.id_employee,
-            "tipe pekerja id":self.tipe_pekerja_id
+            "id_employee":self.id_employee,
+            "tipe_pekerja_id":self.tipe_pekerja_id,
+            "tipe_pekerja_": self.tipe_pekerja
             }
 
 
@@ -73,8 +74,8 @@ class Pekerjaan(Base):
     def to_dict(self):
         return{
             "id":self.id,
-            "pemberi tugas id":self.pemberi_tugas_id,
-            "pekerja id":self.pekerja_id,
+            "pemberi_tugas_id":self.pemberi_tugas_id,
+            "pekerja_id":self.pekerja_id,
             "nama":self.nama,
             "status":self.status
           
