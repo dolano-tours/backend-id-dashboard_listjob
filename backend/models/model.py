@@ -27,6 +27,12 @@ class Pekerja(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     id_employee = Column(Integer, nullable=False)
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "id_employee":self.id_employee
+        }
+    
 
 
 

@@ -1,7 +1,7 @@
 from ..config.database import db_session
 from ..models.model import Pekerjaan
 from ..models.model import Pekerja
-from ..controller.TipePekerja import TipePekerja
+from ..controller.Pekerja import Pekerja
 
 
 def get_all():
