@@ -19,7 +19,13 @@ class Aset(Base):
     is_hasil = Column(Integer, nullable=False)
 
     pekerjaan = relationship('Pekerjaan', primaryjoin='Aset.pekerjaan_id == Pekerjaan.id', backref='asets')
-
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "pekerjaan_id":self.pekerjaan_id,
+            "path_file":self.path_file,
+            "is_hasil":self.is_hasil
+        }
 
 
 class Pekerja(Base):
@@ -45,15 +51,24 @@ class PekerjaPekerjaan(Base):
 
     pekerja = relationship('Pekerja', primaryjoin='PekerjaPekerjaan.pekerja_id == Pekerja.id', backref='pekerja_pekerjaans')
     pekerjaan = relationship('Pekerjaan', primaryjoin='PekerjaPekerjaan.pekerjaan_id == Pekerjaan.id', backref='pekerja_pekerjaans')
-
-
+    def to_dict(self):
+        return{
+            "pekerjaan_id":self.pekerjaan_id,
+            "pekerja_id":self.pekerja_id,
+            "position":self.position
+            
+        }
 
 class Pekerjaan(Base):
     __tablename__ = 'pekerjaan'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     nama = Column(String(45), nullable=False)
-
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "nama":self.nama
+        }
 
 
 class Status(Base):
@@ -65,3 +80,10 @@ class Status(Base):
     type = Column(ENUM('available', 'started', 'approved', 'amend', 'review'), nullable=False)
 
     pekerjaan = relationship('Pekerjaan', primaryjoin='Status.pekerjaan_id == Pekerjaan.id', backref='statuses')
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "pekerjaan_id":self.pekerjaan_id,
+            "time_stamp":self.timestamp,
+            "type":self.type
+        }

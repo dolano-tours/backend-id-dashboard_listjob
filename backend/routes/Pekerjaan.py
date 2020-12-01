@@ -22,21 +22,23 @@ def get_by_nama(nama:str):
 @pekerjaan_routes.route("/add", methods=['POST'])
 def add():
     nama = request.json.get('nama')
-    pekerja_id = request.json.get('pekerja_id')
-    pemberi_tugas_id = request.json.get('pemberi_tugas_id')
-    pekerjaan = Pekerjaan.add(nama,pekerja_id,pemberi_tugas_id)
+    pekerjaan = Pekerjaan.add(nama)
     return jsonify(pekerjaan)
 
 
-@pekerjaan_routes.route("/update/id", methods=['POST'])
-def update_by_id():
-    target_id = request.json.get('get_id')
-    deskripsi_pekerjaan = request.json.get('get_nama')
-
-    pekerjaan = Pekerjaan.update_by_id(target_id, deskripsi_pekerjaan)
+@pekerjaan_routes.route("/delete", methods=['POST'])
+def delete_by_id():#mendelete dengan ID yang di perlukan
+    id = request.json.get('id') # membuata parameter untuk mengakses ID 
+    pekerjaan = Pekerjaan.delete_by_id(id) 
     return jsonify(pekerjaan)
     
 
+@pekerjaan_routes.route("/update", methods=['PUT']) 
+def update_by_id():#update dengan mencari ID yang diperlukan
+    id = request.json.get('id') # untuk memanggil entitas yang ada di dict
+    nama = request.json.get('nama') # memanggil entitas yang ada di dict
+    pekerjaan = Pekerjaan.update_by_id(id,nama) 
+    return jsonify(pekerjaan)
 
 
 
