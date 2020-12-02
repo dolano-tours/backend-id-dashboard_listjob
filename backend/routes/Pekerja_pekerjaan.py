@@ -26,10 +26,10 @@ def delete_by_id():
     pekerja_pekerjaan = Pekerja_pekerjaan.delete_by_id(pekerjaan_id,pekerja_id,position)
     return jsonify(pekerja_pekerjaan)
     
-@pekerja_pekerjaan_routes.route("/update", methods=['PUT'])
-def update_by_position():
-    position = request.json.get('position')
-    pekerjaan_id = request.json.get('pekerjaan_id')
-    pekerja_id = request.json.get('pekerja_id')
-    pekerja_pekerjaan = Pekerja_pekerjaan.update_by_position(position,pekerjaan_id,pekerja_id)
-    return jsonify(pekerja_pekerjaan)
+# @pekerja_pekerjaan_routes.route("/update", methods=['PUT'])
+# def update_by_position():
+#     position = request.json.get('position')
+#     pekerjaan_id = request.json.get('pekerjaan_id')
+#     pekerja_id = request.json.get('pekerja_id')
+#     pekerja_pekerjaan = Pekerja_pekerjaan.update_by_position(position,pekerjaan_id,pekerja_id)
+#     return jsonify(pekerja_pekerjaan)

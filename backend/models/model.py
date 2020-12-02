@@ -84,6 +84,6 @@ class Status(Base):
         return{
             "id":self.id,
             "pekerjaan_id":self.pekerjaan_id,
-            "time_stamp":self.timestamp,
+            "timestamp":self.timestamp,
             "type":self.type
         }

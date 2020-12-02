@@ -24,12 +24,12 @@ def delete_by_id (pekerjaan_id,pekerja_id,position):
     db_session.flush()
     return {"content": data.to_dict()}
 
-def update_by_position(pekerja_id,pekerjaan_id,position):
-    pekerja_pekerjaan = db_session.query(PekerjaPekerjaan).filter_by(pekerja_id=pekerja_id)
-    pekerja_pekerjaan.update(
-        {PekerjaPekerjaan.position:position}
-    )
-    db_session.commit()
-    db_session.flush()
-    data = db_session.query(PekerjaPekerjaan).filter_by(pekerja_id=pekerja_id).first()
-    return{"content": data.to_dict()}
+# def update_by_position(pekerja_id, pekerjaan_id, position):
+#     pekerja_pekerjaan = db_session.query(PekerjaPekerjaan).filter_by(pekerja_id=pekerja_id)
+#     pekerja_pekerjaan.update(
+#         {PekerjaPekerjaan.possition:position}
+#     )
+#     db_session.commit()
+#     db_session.flush()
+#     data = db_session.query(PekerjaPekerjaan).filter_by(pekerja_id=pekerja_id).first()
+#     return{"content": data.to_dict()}
