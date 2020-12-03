@@ -3,6 +3,7 @@ from ..controller import Status
 import json
 
 
+
 Status_routes = Blueprint ('Status', __name__)
 
 @Status_routes.route("/all", methods=['GET'])
@@ -19,6 +20,12 @@ def get_by_id(id:int):
 def add():
     pekerjaan_id = request.json.get('pekerjaan_id')
     timestamp = request.json.get('timestamp')
-    type = request.json.get('type')
-    status = Status.add(pekerjaan_id,timestamp,type)
+    typez = request.json.get('type')
+    status = Status.add(pekerjaan_id,timestamp,typez)
+    return jsonify(status)
+
+@Status_routes.route("/delete", methods=['POST'])
+def delete():
+    id = request.json.get('id')
+    status = Status.delete_by_id(id)
     return jsonify(status)
