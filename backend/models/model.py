@@ -16,8 +16,7 @@ class Aset(Base):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     pekerjaan_id = Column(ForeignKey('pekerjaan.id'), primary_key=True, nullable=False, index=True)
     path_file = Column(Text, nullable=False)
-    is_hasil = Column(Integer, nullable=False)
-
+    is_hasil = Column(ENUM('HASIL', 'DOKUMEN', 'REVIEW'), nullable=False)
     pekerjaan = relationship('Pekerjaan', primaryjoin='Aset.pekerjaan_id == Pekerjaan.id', backref='asets')
     def to_dict(self):
         return{
@@ -33,10 +32,12 @@ class Pekerja(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     id_employee = Column(Integer, nullable=False)
+    nama_pekerja = Column(String(45), nullable=False)
     def to_dict(self):
         return{
             "id":self.id,
-            "id_employee":self.id_employee
+            "id_employee":self.id_employee,
+            "nama_pekerja":self.nama_pekerja
         }
     
 
@@ -78,12 +79,14 @@ class Status(Base):
     pekerjaan_id = Column(ForeignKey('pekerjaan.id'), primary_key=True, nullable=False, index=True)
     timestamp = Column(DateTime, nullable=False)
     type = Column(ENUM('available', 'started', 'approved', 'amend', 'review'), nullable=False)
+    due_date = Column(DateTime, nullable=False)
 
-    pekerjaan = relationship('Pekerjaan', primaryjoin='Status.pekerjaan_id == Pekerjaan.id', backref='statuses')
+    pekerjaan = relationship('Pekerjaan', primaryjoin='Pekerjaan.id == Status.pekerjaan_id', backref='statuses')
     def to_dict(self):
         return{
             "id":self.id,
             "pekerjaan_id":self.pekerjaan_id,
             "timestamp":self.timestamp,
-            "type":self.type
+            "type":self.type,
+            "due_date":self.due_date
         }

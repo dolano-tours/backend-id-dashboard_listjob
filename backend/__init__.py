@@ -7,5 +7,6 @@ from backend.routes.Aset import Aset_routes
 from backend.routes.Status import Status_routes
 
 
-
 app = Flask("dashboard")
+
+
